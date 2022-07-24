@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useAuthentication } from '../hooks/useAuthentication';
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { signin } = useAuthentication();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(email, password)
-  }
-  
+    e.preventDefault();
+    signin(email, password);
+  };
+
   return (
     <div>
       <h2>Login</h2>
@@ -34,5 +37,5 @@ export default function Login() {
         <button>log in</button>
       </form>
     </div>
-  )
+  );
 }
